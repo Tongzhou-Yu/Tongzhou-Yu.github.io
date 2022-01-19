@@ -51,13 +51,15 @@ Controllers: 410-controller
 Place Objects: 411-place-object  
 HitTests:: 420-hit-test  
 Assignment: 430-furniture  
+   
+-- Section 7 --  
   
--- Section 7 --
 Sharing Camera Feed: 500-video-feed  
 Hand Gestures Detection: 501-hand-gesture  
 Face Emotions Detection: 502-face-api  
-
--- Section 8 -- 
+  
+-- Section 8 --  
+  
 Introduction to AFRAME: 600-aframe  
 AFRAME and WebXR: 601-aframe-webxr  
 AFRAME and MindAR: 602-aframe-mindar  
