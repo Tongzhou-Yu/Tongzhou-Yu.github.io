@@ -3,7 +3,8 @@
 1. ./lectures-start directory contains source code at the beginning of the lectures
 2. ./lectures directory contains source at the end of the lectures
 3. ./assets directory contains all resources used in the examples
-4. ./libs contains all libraries used in the examples
+4. ./libs contains all libraries used in the examples  
+5. ./offical document: https://hiukim.github.io/mind-ar-js-doc/  
 
 === Lectures and Source Code Mappings:
   
