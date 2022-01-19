@@ -2,7 +2,6 @@ import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.136.0-4Px7Kx1INqCFB
 
 document.addEventListener('DOMContentLoaded', () => {
   const scene = new THREE.Scene();
-  console.log("");
 
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshBasicMaterial({color: "#0000FF"});
