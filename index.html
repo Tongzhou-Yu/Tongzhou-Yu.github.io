@@ -1,28 +1,41 @@
 <head>
   <style> body { margin: 0; } </style>
 
+  <script src="//unpkg.com/three"></script>
+  <script src="//unpkg.com/three/examples/js/renderers/CSS2DRenderer.js"></script>
+
   <script src="//unpkg.com/3d-force-graph"></script>
-  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+<!--  <script src="../../dist/3d-force-graph.js"></script>-->
+
+  <style>
+    .node-label {
+      font-size: 12px;
+      padding: 1px 4px;
+      border-radius: 4px;
+      background-color: rgba(0,0,0,0.5);
+      user-select: none;
+    }
+  </style>
 </head>
 
 <body>
   <div id="3d-graph"></div>
 
   <script>
-    // Random tree
-    const N = 300;
-    const gData = {
-      nodes: [...Array(N).keys()].map(i => ({ id: i })),
-      links: [...Array(N).keys()]
-        .filter(id => id)
-        .map(id => ({
-          source: id,
-          target: Math.round(Math.random() * (id-1))
-        }))
-    };
-
-    const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
-        .graphData(gData);
+    const Graph = ForceGraph3D({
+      extraRenderers: [new THREE.CSS2DRenderer()]
+    })
+    (document.getElementById('3d-graph'))
+      .jsonUrl('../datasets/miserables.json')
+      .nodeAutoColorBy('group')
+      .nodeThreeObject(node => {
+        const nodeEl = document.createElement('div');
+        nodeEl.textContent = node.id;
+        nodeEl.style.color = node.color;
+        nodeEl.className = 'node-label';
+        return new THREE.CSS2DObject(nodeEl);
+      })
+      .nodeThreeObjectExtend(true)
+    ;
   </script>
 </body>
