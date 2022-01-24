@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     scene.add(light);
 
     const faceMesh = mindarThree.addFaceMesh();
-    const texture = await loadTexture('../../assets/facemesh/face-mask-template/Face_Mask_Template.png');
+    const texture = await loadTexture('../../assets/facemesh/face-mask-template/faceMesh.png');
+    
     faceMesh.material.map = texture;
     faceMesh.material.transparent = true;
     faceMesh.material.needsUpdate = true;
