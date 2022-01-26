@@ -1,21 +1,27 @@
 var a = hash.substr(2,2);
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(windowWidth, windowHeight);
   background(255);
   console.log(hash);
   console.log(a);
 }
+
+function getMin(num1,num2){return num1<num2?num1:num2;}
+
 function draw() {
   let Posture =1;
   //情绪：250~350,特殊320
   let Emotion = 320;
+
+  let tSize = getMin(windowWidth,windowHeight);
+
   let headPatternAcount = 3;
   let bodyPatternAcount = 6;
   let tailPatternAcount = 10;
   tigerNormalColor = color(243,183,0);
   tigerSpecialColor = color(50,50,50);
-  
+
   tigerColor = tigerNormalColor;
   if(Posture==1){
   createBody(750, bodyPatternAcount);

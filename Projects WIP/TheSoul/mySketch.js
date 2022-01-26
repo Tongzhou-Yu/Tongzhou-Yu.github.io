@@ -9,23 +9,23 @@ let webglgraphics, graphics, graphics2;
 function playSynth(note='A3',dur) {
   userStartAudio();
   let vel = random(0.2);
-  polySynth.play(note, vel, 0, dur); 
+  polySynth.play(note, vel, 0, dur);
 }
 function preload() {
 	theShader = new p5.Shader(this.renderer, vert, frag)
 }
 
 function setup() {
-	createCanvas(1000, 1000);
+	createCanvas(windowWidth, windowHeight);
 	pixelDensity(2)
-	webglgraphics = createGraphics(1000, 1000, WEBGL);
+	webglgraphics = createGraphics(windowWidth, windowHeight, WEBGL);
 	graphics = createGraphics(width, height)
 	graphics2 = createGraphics(width, height)
   polySynth = new p5.PolySynth();
 	polySynth.setADSR(1,1,1,1)
 	noStroke()
 	background(0);
- 	useChord = chord 
+ 	useChord = chord
 	chord = [2,3,4,5].map(n=>useChord.map(note=>note+n)).flat().filter(a=>a)
 }
 
@@ -34,7 +34,7 @@ let autoMovemouse = true
 function mouseMoved() {
 	autoMovemouse = false
 }
-let notePlayCount = 0 
+let notePlayCount = 0
 
 function draw() {
 	if (autoMovemouse) {
