@@ -1,8 +1,6 @@
 var a = hash.substr(2,2);
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(255);
   console.log(hash);
   console.log(a);
 }
@@ -10,38 +8,38 @@ function setup() {
 function getMin(num1,num2){return num1<num2?num1:num2;}
 
 function draw() {
+  createCanvas(windowWidth, windowHeight);
+  background(255);
+  let tSize = getMin(windowWidth,windowHeight);
   let Posture =1;
   //情绪：250~350,特殊320
-  let Emotion = 320;
-
-  let tSize = getMin(windowWidth,windowHeight);
-
+  let Emotion = tSize/2/(500/320);
   let headPatternAcount = 3;
-  let bodyPatternAcount = 6;
+  let bodyPatternAcount = 5;
   let tailPatternAcount = 10;
   tigerNormalColor = color(243,183,0);
   tigerSpecialColor = color(50,50,50);
 
   tigerColor = tigerNormalColor;
   if(Posture==1){
-  createBody(750, bodyPatternAcount);
-  createTailDown(250, 750, tailPatternAcount);
-  createHead(250, 250, 87.37, Emotion, headPatternAcount);
-  }
+  createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
+  createTailDown(windowWidth/2-tSize/4, windowHeight/2+tSize/4, tailPatternAcount,tSize);
+  createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
+}//原始位置
   if(Posture==2){
-  createBody(750, bodyPatternAcount);
-  createTailUp(250, 250, tailPatternAcount);
-  Adjust(220,500,0)
-  createHead(250, 250, 87.37, Emotion, headPatternAcount);
+  createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
+  createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
+  Adjust(tSize/2/(500/220),windowHeight/2,0)
+  createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
   if(Posture==3){
-  Adjust(-1000,0,-HALF_PI)
-  createBody(750, bodyPatternAcount);
-  createTailUp(250, 250, tailPatternAcount);
+  Adjust(-(windowWidth/2+tSize/2),0,-HALF_PI)
+  createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
+  createTailUp(250, 250, tailPatternAcount,tSize);
   pop()
   Adjust(250,500,0)
-  createHead(500, 250, 87.37, Emotion, headPatternAcount);
+  createHead(500, 250, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
   if(Posture==4){
@@ -78,91 +76,91 @@ function draw() {
     pop()
   }
 }
-function createHead(headCenterX, headCenterY, eyeSize, Emotion, headPatternAcount) {
-  let headCorrectionX = headCenterX - 250;
-  let headCorrectionY = headCenterY - 250;
+function createHead(headCenterX, headCenterY, eyeSize, Emotion, headPatternAcount, tSize) {
+  let headCorrectionX = headCenterX - tSize/4;
+  let headCorrectionY = headCenterY - tSize/4;
   //耳
   fill(tigerColor);
   stroke("#000000");
-  strokeWeight(60);
-  rect(headCorrectionX, headCorrectionY, 500, 250);
+  strokeWeight(60*tSize/1000);
+  rect(headCorrectionX, headCorrectionY, tSize/2, tSize/4);
   //脸
-  circle(headCenterX, headCenterY, 500);
+  circle(headCenterX, headCenterY, tSize/2);
   //人中
   noFill();
   stroke("#000000");
-  strokeWeight(30);
-  line(headCenterX, headCenterY + 250, headCenterX, headCenterY + 163);
+  strokeWeight(30*tSize/1000);
+  line(headCenterX, headCenterY + tSize/4, headCenterX, headCenterY + tSize/(1000/163));
   //额纹
   strokeCap(ROUND);
   noFill();
   stroke("#000000");
-  strokeWeight(30);
+  strokeWeight(30*tSize/1000);
   for (let i = 0; i < headPatternAcount; i++) {
     arc(
       headCenterX,
       headCenterY,
-      500 / (headPatternAcount + 1) + (500 / (headPatternAcount + 1)) * i,
-      500 / (headPatternAcount + 1) + (500 / (headPatternAcount + 1)) * i,
+      tSize/2 / (headPatternAcount + 1) + (tSize/2 / (headPatternAcount + 1)) * i,
+      tSize/2 / (headPatternAcount + 1) + (tSize/2 / (headPatternAcount + 1)) * i,
       PI + QUARTER_PI,
       TWO_PI - QUARTER_PI
     );
   }
-  line(headCenterX, headCenterY - 250, headCenterX, headCenterY);
+  line(headCenterX, headCenterY - tSize/4, headCenterX, headCenterY);
   //左眼
   beginShape();
-  vertex(eyeSize + headCorrectionX, Emotion + headCorrectionY);
-  vertex(195.57 + headCorrectionX, 321.67 + headCorrectionY);
-  vertex(195.57 + headCorrectionX, 403.29 + headCorrectionY);
+  vertex(tSize/2/(500/eyeSize) + headCorrectionX, Emotion + headCorrectionY);
+  vertex(tSize/2/(500/195.57) + headCorrectionX, tSize/2/(500/321.67) + headCorrectionY);
+  vertex(tSize/2/(500/195.57) + headCorrectionX, tSize/2/(500/403.29) + headCorrectionY);
   bezierVertex(
-    195.57 + headCorrectionX,
-    403.29 + headCorrectionY,
-    223.01 + headCorrectionX,
-    412.64 + headCorrectionY,
-    250.01 + headCorrectionX,
-    412.64 + headCorrectionY
+    tSize/2/(500/195.57) + headCorrectionX,
+    tSize/2/(500/403.29) + headCorrectionY,
+    tSize/2/(500/223.01) + headCorrectionX,
+    tSize/2/(500/412.64) + headCorrectionY,
+    tSize/2/(500/250.01) + headCorrectionX,
+    tSize/2/(500/412.64) + headCorrectionY
   );
   endShape();
   //右眼
   beginShape();
-  vertex(500 - eyeSize + headCorrectionX, Emotion + headCorrectionY);
-  vertex(304.43 + headCorrectionX, 321.67+ headCorrectionY);
-  vertex(304.43 + headCorrectionX, 403.29+ headCorrectionY);
+  vertex(tSize/2 - tSize/2/(500/eyeSize) + headCorrectionX, Emotion + headCorrectionY);
+  vertex(tSize/2/(500/304.43) + headCorrectionX, tSize/2/(500/321.67)+ headCorrectionY);
+  vertex(tSize/2/(500/304.43) + headCorrectionX, tSize/2/(500/403.29)+ headCorrectionY);
   bezierVertex(
-    304.43 + headCorrectionX,
-    403.29 + headCorrectionY,
-    276.99 + headCorrectionX,
-    412.64 + headCorrectionY,
-    249.99 + headCorrectionX,
-    412.64 + headCorrectionY
+    tSize/2/(500/304.43) + headCorrectionX,
+    tSize/2/(500/403.29) + headCorrectionY,
+    tSize/2/(500/276.99) + headCorrectionX,
+    tSize/2/(500/412.64) + headCorrectionY,
+    tSize/2/(500/249.99) + headCorrectionX,
+    tSize/2/(500/412.64) + headCorrectionY
   );
   endShape();
 }
-function createBody(bodyCenterX, bodyPatternAcount) {
+function createBody(bodyCenterX, bodyPatternAcount, tSize) {
   //身体颜色
   fill(tigerColor);
   noStroke();
-  rect(500, 0, 250, 1000);
-  rect(750, 250, 250, 500);
+  rect(windowWidth/2, windowHeight/2-tSize/2, tSize/4, tSize);
+  rect(windowWidth/2+tSize/4, windowHeight/2-tSize/4, tSize/4, tSize/2);
   //身体描边
   stroke("#000000");
-  strokeWeight(60);
+  strokeWeight(60*tSize/1000);
   strokeCap(SQUARE);
-  line(500, 0, 750, 0);
-  line(500, 0, 500, 1000);
-  line(1000, 250, 1000, 750);
-  line(500, 1000, 750, 1000);
+  line(windowWidth/2, windowHeight/2-tSize/2, windowWidth/2+tSize/4, windowHeight/2-tSize/2);//Body Up
+  line(windowWidth/2, windowHeight/2-tSize/2, windowWidth/2, windowHeight/2+tSize/2);//Body Left
+  line(windowWidth/2+tSize/2, windowHeight/2-tSize/4, windowWidth/2+tSize/2, windowHeight/2+tSize/4);//Body Right
+  line(windowWidth/2, windowHeight/2+tSize/2, windowWidth/2+tSize/4, windowHeight/2+tSize/2);//Body Down
   //花纹设定
   stroke("#000000");
-  strokeWeight(60);
+  strokeWeight(60*tSize/1000);
   strokeCap(SQUARE);
   //花纹右
   for (let i = 0; i < bodyPatternAcount; i++) {
     arc(
       bodyCenterX,
-      250 + (750 / (bodyPatternAcount + 1)) * i,
-      500,
-      500,
+      windowHeight/2-tSize/4 + (tSize/2/ (bodyPatternAcount - 1)) * i,
+      tSize/2,
+      tSize/2,
       TWO_PI - HALF_PI,
       TWO_PI
     );
@@ -171,90 +169,90 @@ function createBody(bodyCenterX, bodyPatternAcount) {
   for (let i = 0; i < bodyPatternAcount; i++) {
     arc(
       bodyCenterX,
-      250 + 250 / bodyPatternAcount + (750 / (bodyPatternAcount + 1)) * i,
-      500,
-      500,
+      windowHeight/2-tSize/4+tSize/4/(bodyPatternAcount-1)+ (tSize/2/ (bodyPatternAcount - 1)) * i,
+      tSize/2,
+      tSize/2,
       PI,
       TWO_PI - HALF_PI
     );
   }
   //屁股
-  arc(bodyCenterX, 750, 500, 500, 0, HALF_PI);
+  arc(bodyCenterX, windowHeight/2+tSize/4, tSize/2, tSize/2, 0, HALF_PI);
 }
-function createTailDown(tailCenterX, tailCenterY, tailPatternAcount) {
+function createTailDown(tailCenterX, tailCenterY, tailPatternAcount, tSize) {
   //尾巴底色
   noFill();
   stroke(tigerColor);
-  strokeWeight(100);
-  arc(tailCenterX, tailCenterY, 350, 350, HALF_PI, TWO_PI);
-  line(tailCenterX + 175, tailCenterY, tailCenterX + 175, tailCenterY + 150);
-  //尾巴外轮廓
-  noFill();
-  stroke("#000000");
-  strokeWeight(60);
-  arc(tailCenterX, tailCenterY, 500, 500, HALF_PI, TWO_PI);
-  arc(tailCenterX, tailCenterY, 200, 200, HALF_PI, TWO_PI);
-  line(tailCenterX, tailCenterY + 250, 500, tailCenterY + 250);
-  line(tailCenterX, tailCenterY + 100, 500, tailCenterY + 100);
-  line(tailCenterX + 100, tailCenterY, tailCenterX + 100, tailCenterY + 100);
-  line(500, tailCenterY, 500, tailCenterY + 100);
+  strokeWeight(100*tSize/1000);
+  arc(tailCenterX, tailCenterY, tSize/2/(500/350), tSize/2/(500/350), HALF_PI, TWO_PI);
+  line(tailCenterX + tSize/2/(500/175), tailCenterY, tailCenterX + tSize/2/(500/175), tailCenterY + tSize/2/(500/150));
   //尾巴遮罩
   fill(tigerColor);
   noStroke();
-  rect(tailCenterX,tailCenterY+130,250+31,90)
+  rect(tailCenterX,tailCenterY+tSize/2/(500/130),tSize/4+tSize/2/(500/40),tSize/2/(500/90));
+  //尾巴外轮廓
+  noFill();
+  stroke("#000000");
+  strokeWeight(60*tSize/1000);
+  arc(tailCenterX, tailCenterY, tSize/2, tSize/2, HALF_PI, TWO_PI);
+  arc(tailCenterX, tailCenterY, tSize/2/(500/200), tSize/2/(500/200), HALF_PI, TWO_PI);
+  line(tailCenterX, tailCenterY + tSize/4, windowWidth/2, tailCenterY + tSize/4);
+  line(tailCenterX, tailCenterY + tSize/2/(500/100), windowWidth/2, tailCenterY + tSize/2/(500/100));
+  line(tailCenterX + tSize/2/(500/100), tailCenterY, tailCenterX + tSize/2/(500/100), tailCenterY + tSize/2/(500/100));
+  line(windowWidth/2, tailCenterY, windowWidth/2, tailCenterY + tSize/2/(500/100));
   //尾巴花纹
   noFill();
   strokeCap(ROUND);
   stroke("#000000");
-  strokeWeight(30);
+  strokeWeight(30*tSize/1000);
   for (let i = 0; i < tailPatternAcount/2; i++) {
     line(
-      -sin(0 + QUARTER_PI * i) * 250 + tailCenterX,
-      -cos(0 + QUARTER_PI * i) * 250 + tailCenterY,
-      -sin(0 + QUARTER_PI * i - QUARTER_PI / 2) * 180 + tailCenterX,
-      -cos(0 + QUARTER_PI * i - QUARTER_PI / 2) * 180 + tailCenterY
+      -sin(0 + QUARTER_PI * i) * tSize/4 + tailCenterX,
+      -cos(0 + QUARTER_PI * i) * tSize/4 + tailCenterY,
+      -sin(0 + QUARTER_PI * i - QUARTER_PI / 2) * tSize/2/(500/180) + tailCenterX,
+      -cos(0 + QUARTER_PI * i - QUARTER_PI / 2) * tSize/2/(500/180) + tailCenterY
     );
   }
   for (let i = 0; i < tailPatternAcount/2; i++) {
-    line(tailCenterX+(300/(tailPatternAcount/2-1))*i, tailCenterY+250, tailCenterX-65+(300/(tailPatternAcount/2-1))*i, tailCenterY+175);
+    line(tailCenterX+(tSize/2/(500/300)/(tailPatternAcount/2-1))*i, tailCenterY+tSize/4, tailCenterX-tSize/2/(500/65)+(tSize/2/(500/300)/(tailPatternAcount/2-1))*i, tailCenterY+tSize/2/(500/175));
   }
 }
-function createTailUp(tailCenterX, tailCenterY, tailPatternAcount) {
+function createTailUp(tailCenterX, tailCenterY, tailPatternAcount, tSize) {
   //尾巴底色
   noFill();
   stroke(tigerColor);
-  strokeWeight(100);
-  arc(tailCenterX, tailCenterY, 350, 350, HALF_PI-HALF_PI, TWO_PI-HALF_PI);
-  line(tailCenterX + 175, tailCenterY, tailCenterX + 175, tailCenterY - 150);
-  //尾巴外轮廓
-  noFill();
-  stroke("#000000");
-  strokeWeight(60);
-  arc(tailCenterX, tailCenterY, 500, 500, HALF_PI-HALF_PI, TWO_PI-HALF_PI);
-  arc(tailCenterX, tailCenterY, 200, 200, HALF_PI-HALF_PI, TWO_PI-HALF_PI);
-  line(tailCenterX, tailCenterY - 250, 500, tailCenterY - 250);
-  line(tailCenterX, tailCenterY - 100, 500, tailCenterY - 100);
-  line(tailCenterX + 100, tailCenterY, tailCenterX + 100, tailCenterY - 100);
-  line(500, tailCenterY, 500, tailCenterY - 100);
+  strokeWeight(100*tSize/1000);
+  arc(tailCenterX, tailCenterY, tSize/2/(500/350), tSize/2/(500/350), HALF_PI-HALF_PI, TWO_PI-HALF_PI);
+  line(tailCenterX + tSize/2/(500/175), tailCenterY, tailCenterX + tSize/2/(500/175), tailCenterY - tSize/2/(500/150));
   //尾巴遮罩
   fill(tigerColor);
   noStroke();
-  rect(tailCenterX,tailCenterY-130-90,250+31,90)
+  rect(tailCenterX,tailCenterY-(tSize/4-30*tSize/1000),tSize/2/(500/(250+31)),tSize/2/(500/90));
+  //尾巴外轮廓
+  noFill();
+  stroke("#000000");
+  strokeWeight(60*tSize/1000);
+  arc(tailCenterX, tailCenterY, tSize/2, tSize/2, HALF_PI-HALF_PI, TWO_PI-HALF_PI);
+  arc(tailCenterX, tailCenterY, tSize/2/(500/200), tSize/2/(500/200), HALF_PI-HALF_PI, TWO_PI-HALF_PI);
+  line(tailCenterX, tailCenterY - tSize/4, windowWidth/2, tailCenterY - tSize/4);
+  line(tailCenterX, tailCenterY - tSize/2/(500/100), windowWidth/2, tailCenterY - tSize/2/(500/100));
+  line(tailCenterX + tSize/2/(500/100), tailCenterY, tailCenterX + tSize/2/(500/100), tailCenterY - tSize/2/(500/100));
+  line(windowWidth/2, tailCenterY, windowWidth/2, tailCenterY - tSize/2/(500/100));
   //尾巴花纹
   noFill();
   strokeCap(ROUND);
   stroke("#000000");
-  strokeWeight(30);
+  strokeWeight(30*tSize/1000);
   for (let i = 0; i < tailPatternAcount/2; i++) {
     line(
-      -sin(HALF_PI + QUARTER_PI * i) * 250 + tailCenterX,
-      -cos(HALF_PI + QUARTER_PI * i) * 250 + tailCenterY,
-      -sin(HALF_PI + QUARTER_PI * i + QUARTER_PI / 2) * 180 + tailCenterX,
-      -cos(HALF_PI + QUARTER_PI * i + QUARTER_PI / 2) * 180 + tailCenterY
+      -sin(HALF_PI + QUARTER_PI * i) * tSize/4 + tailCenterX,
+      -cos(HALF_PI + QUARTER_PI * i) * tSize/4 + tailCenterY,
+      -sin(HALF_PI + QUARTER_PI * i + QUARTER_PI / 2) * tSize/2/(500/180) + tailCenterX,
+      -cos(HALF_PI + QUARTER_PI * i + QUARTER_PI / 2) * tSize/2/(500/180) + tailCenterY
     );
   }
   for (let i = 0; i < tailPatternAcount/2; i++) {
-    line(tailCenterX+(300/(tailPatternAcount/2-1))*i, tailCenterY-250, tailCenterX-65+(300/(tailPatternAcount/2-1))*i, tailCenterY-175);
+    line(tailCenterX+(tSize/2/(500/300)/(tailPatternAcount/2-1))*i, tailCenterY-tSize/4, tailCenterX-tSize/2/(500/65)+(tSize/2/(500/300)/(tailPatternAcount/2-1))*i, tailCenterY-tSize/2/(500/175));
   }
 }
 function Adjust(postionX,postionY,rotation){
