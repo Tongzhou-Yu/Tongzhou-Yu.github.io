@@ -35,9 +35,6 @@ function setup() {
   {tigerColor = color(139,69,19);console.log("马鞍棕色")}
   if(parseInt(tigerhash.substr(10,1), 16) ==15)
   {tigerColor = color(160,82,45);console.log("赭色")}
-
-
-
   // 变量设置--------------------------------------------------------------------
 
   createCanvas(windowWidth, windowHeight);
