@@ -13,8 +13,7 @@ function setup() {
   console.log("Hash：",tigerhash);
   let backgroundColor = color(tigerhash.substr(2,2),0,0);
   console.log("背景：",backgroundColor);
-  //let Posture = parseInt(tigerhash.substr(4,1), 16);
-  let Posture = 8;
+  let Posture = parseInt(tigerhash.substr(4,1), 16);
   console.log("姿态：",Posture);
   let Emotion = tSize/2/(500/(250+(100/(255/(parseInt(tigerhash.substr(5,2), 16))))));
   console.log("情绪：",Emotion,"250~350,特殊320");
