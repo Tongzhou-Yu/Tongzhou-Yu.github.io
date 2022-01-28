@@ -1,7 +1,22 @@
 <!DOCTYPE html><html lang="en"><head>
     <script src="p5.js"></script>
     <script src="p5.sound.min.js"></script>
-    <script>let hash = "0x7e74c1f175f703f795b45b54167e2c2066423f9d75407ad3d43047d663ac58";</script>
+    <script>
+  handleFormat = (url) => {
+    let url_data = url.split('?')[1]
+    let query_array = url_data.split('&')
+    let query_object = {}
+    for (var index in query_array) {
+      var key = query_array[index].split('=')
+      query_object[key[0]] = key[1]
+    }
+    return query_object
+  }
+  const hash = handleFormat(location.search).hash
+  let tokenData = {
+    hash: hash
+  }
+</script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
 

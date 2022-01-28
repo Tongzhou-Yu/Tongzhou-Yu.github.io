@@ -1,8 +1,8 @@
-var a = hash.substr(2,2);
+
 
 function setup() {
-  console.log(hash);
-  console.log(a);
+  let param1= parseInt(tokenData.hash.substr(2, 8), 16)
+  console.log(param1);
 }
 
 function getMin(num1,num2){return num1<num2?num1:num2;}
@@ -11,7 +11,7 @@ function draw() {
   createCanvas(windowWidth, windowHeight);
   background(255);
   let tSize = getMin(windowWidth,windowHeight);
-  let Posture =1;
+  let Posture =6;
   //情绪：250~350,特殊320
   let Emotion = tSize/2/(500/320);
   let headPatternAcount = 3;
@@ -29,50 +29,58 @@ function draw() {
   if(Posture==2){
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
   createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
-  Adjust(tSize/2/(500/220),windowHeight/2,0)
+  Adjust(tSize/4,tSize/2,0)
   createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
   if(Posture==3){
-  Adjust(-(windowWidth/2+tSize/2),0,-HALF_PI)
+  let postionX,postionY;
+  if(windowWidth>=windowHeight){postionX=-(windowHeight+(windowWidth/2-tSize/2));postionY=windowWidth/2+tSize/2-tSize;}
+  else{postionX=-(windowHeight/2+tSize/2);postionY=-(windowHeight/2-tSize/2);}
+  Adjust(postionX,postionY,-HALF_PI)
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
-  createTailUp(250, 250, tailPatternAcount,tSize);
+  createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
   pop()
-  Adjust(250,500,0)
-  createHead(500, 250, 87.37, Emotion, headPatternAcount,tSize);
+  Adjust(tSize/4,tSize/2,0)
+  createHead(windowWidth/2, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
   if(Posture==4){
-  Adjust(-1000,0,-HALF_PI)
-  createBody(750, bodyPatternAcount);
+    let postionX,postionY;
+    if(windowWidth>=windowHeight){postionX=-(windowHeight+(windowWidth/2-tSize/2));postionY=windowWidth/2+tSize/2-tSize;}
+    else{postionX=-(windowHeight/2+tSize/2);postionY=-(windowHeight/2-tSize/2);}
+    Adjust(postionX,postionY,-HALF_PI)
+  createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
   pop()
-  Adjust(-1000,500,-HALF_PI)
-  createTailDown(250, 250, tailPatternAcount);
+  if(windowWidth>=windowHeight){postionX=-(windowHeight+(windowWidth/2-tSize/2));postionY=windowWidth/2+tSize/2-tSize+tSize/2;}
+  else{postionX=-(windowHeight/2+tSize/2);postionY=-(windowHeight/2-tSize/2)+tSize/2;}
+  Adjust(postionX,postionY,-HALF_PI)
+  createTailDown(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
   pop()
-  Adjust(0,500,0)
-  createHead(250, 250, 87.37, Emotion, headPatternAcount);
+  Adjust(0,tSize/2,0)
+  createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
   if(Posture==5){
-    Adjust(-1000,-1000,PI)
-    createBody(750, bodyPatternAcount);
+    Adjust(-windowWidth,-windowHeight,PI)
+    createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
     pop()
-    Adjust(-1000,-1000,PI)
-    createTailUp(250, 250, tailPatternAcount);
+    Adjust(-windowWidth,-windowHeight,PI)
+    createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
     pop()
-    Adjust(500,0,0)
-    createHead(250, 250, 87.37, Emotion, headPatternAcount);
+    Adjust(tSize/2,0,0)
+    createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
     pop()
   }
   if(Posture==6){
-        Adjust(-1000,-1000,PI)
-    createBody(750, bodyPatternAcount);
+        Adjust(-windowWidth,-windowHeight,PI)
+    createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
     pop()
-        Adjust(-1000,-500,PI)
-    createTailDown(250, 250, tailPatternAcount);
+        Adjust(-windowWidth,-(windowHeight-tSize/2),PI)
+    createTailDown(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
     pop()
-        Adjust(280,500,0)
-    createHead(250, 250, 87.37, Emotion, headPatternAcount);
+        Adjust(tSize/4+30*tSize/1000,tSize/2,0)
+    createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
     pop()
   }
 }
