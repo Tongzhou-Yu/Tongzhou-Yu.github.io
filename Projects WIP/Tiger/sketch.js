@@ -13,7 +13,8 @@ function setup() {
   console.log("Hash：",tigerhash);
   let backgroundColor = color(tigerhash.substr(2,2),0,0);
   console.log("背景：",backgroundColor);
-  let Posture = parseInt(tigerhash.substr(4,1), 16);
+  //let Posture = parseInt(tigerhash.substr(4,1), 16);
+  let Posture = 8;
   console.log("姿态：",Posture);
   let Emotion = tSize/2/(500/(250+(100/(255/(parseInt(tigerhash.substr(5,2), 16))))));
   console.log("情绪：",Emotion,"250~350,特殊320");
@@ -44,6 +45,7 @@ function setup() {
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
   createTailDown(windowWidth/2-tSize/4, windowHeight/2+tSize/4, tailPatternAcount,tSize);
   createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
+
 }//原始位置
   if(Posture>=4 && Posture<=6){
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
@@ -60,7 +62,7 @@ function setup() {
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
   createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
   pop()
-  Adjust(tSize/4,tSize/2,0)
+  Adjust(tSize/4,tSize/4+30*tSize/1000,0)
   createHead(windowWidth/2, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
@@ -88,7 +90,7 @@ function setup() {
     createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
     pop()
     Adjust(tSize/2,0,0)
-    createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
+    createHead(windowWidth/2-tSize/2, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
     pop()
   }
   if(Posture==16){
