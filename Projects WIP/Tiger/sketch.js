@@ -169,6 +169,7 @@ function createBody(bodyCenterX, bodyPatternAcount, tSize) {
   noStroke();
   rect(windowWidth/2, windowHeight/2-tSize/2, tSize/4, tSize);
   rect(windowWidth/2+tSize/4, windowHeight/2-tSize/4, tSize/4, tSize/2);
+  ellipse(bodyCenterX, windowHeight/2+tSize/4, tSize/2, tSize/2);//屁股
   //身体描边
   stroke("#000000");
   strokeWeight(60*tSize/1000);
