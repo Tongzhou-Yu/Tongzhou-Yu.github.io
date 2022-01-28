@@ -1,39 +1,61 @@
-
-
-function setup() {
-  let param1= parseInt(tokenData.hash.substr(2, 8), 16)
-  console.log(param1);
-}
-
 function getMin(num1,num2){return num1<num2?num1:num2;}
 
-function draw() {
-  createCanvas(windowWidth, windowHeight);
-  background(255);
-  let tSize = getMin(windowWidth,windowHeight);
-  let Posture =6;
-  //情绪：250~350,特殊320
-  let Emotion = tSize/2/(500/320);
-  let headPatternAcount = 3;
-  let bodyPatternAcount = 5;
-  let tailPatternAcount = 10;
-  tigerNormalColor = color(243,183,0);
-  tigerSpecialColor = color(50,50,50);
+function setup() {
 
-  tigerColor = tigerNormalColor;
-  if(Posture==1){
+  // 定义Hash值-----------------------------------------------------------------
+  let tigerhash = fxhash;//离线测试
+  //let tigerhash = tokenData.hash;//正式版本
+  // 定义Hash值-----------------------------------------------------------------
+
+  let tSize = getMin(windowWidth,windowHeight);
+
+  // 变量设置--------------------------------------------------------------------
+  console.log("Hash：",tigerhash);
+  let backgroundColor = color(tigerhash.substr(2,2),0,0);
+  console.log("背景：",backgroundColor);
+  let Posture = parseInt(tigerhash.substr(4,1), 16);
+  console.log("姿态：",Posture);
+  let Emotion = tSize/2/(500/(250+(100/(255/(parseInt(tigerhash.substr(5,2), 16))))));
+  console.log("情绪：",Emotion,"250~350,特殊320");
+  let headPatternAcount = Math.trunc(parseInt(tigerhash.substr(7,1), 16)/3)+1;
+  console.log("额头花纹：",headPatternAcount);
+  let bodyPatternAcount = Math.trunc(parseInt(tigerhash.substr(8,1), 16)/3)+3;
+  console.log("身体花纹：",bodyPatternAcount);
+  let tailPatternAcount = Math.trunc(parseInt(tigerhash.substr(9,1), 16)/3)+4;
+  console.log("尾巴花纹：",tailPatternAcount);
+  if(parseInt(tigerhash.substr(10,1), 16) >=0 && parseInt(tigerhash.substr(10,1), 16) <=10)
+  {tigerColor = color(255,165,0);console.log("橙色")}
+  if(parseInt(tigerhash.substr(10,1), 16) ==11)
+  {tigerColor = color(255,215,0);console.log("金色")}
+  if(parseInt(tigerhash.substr(10,1), 16) ==12)
+  {tigerColor = color(205,133,63);console.log("秘鲁色")}
+  if(parseInt(tigerhash.substr(10,1), 16) ==13)
+  {tigerColor = color(210,105,30);console.log("巧克力色")}
+  if(parseInt(tigerhash.substr(10,1), 16) ==14)
+  {tigerColor = color(139,69,19);console.log("马鞍棕色")}
+  if(parseInt(tigerhash.substr(10,1), 16) ==15)
+  {tigerColor = color(160,82,45);console.log("赭色")}
+
+
+
+  // 变量设置--------------------------------------------------------------------
+
+  createCanvas(windowWidth, windowHeight);
+  background(backgroundColor);
+
+  if(Posture>=0 && Posture<=3){
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
   createTailDown(windowWidth/2-tSize/4, windowHeight/2+tSize/4, tailPatternAcount,tSize);
   createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
 }//原始位置
-  if(Posture==2){
+  if(Posture>=4 && Posture<=6){
   createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
   createTailUp(windowWidth/2-tSize/4, windowHeight/2-tSize/4, tailPatternAcount,tSize);
-  Adjust(tSize/4,tSize/2,0)
+  Adjust(tSize/4-30*tSize/1000,tSize/2,0)
   createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
-  if(Posture==3){
+  if(Posture>=7 && Posture<=9){
   let postionX,postionY;
   if(windowWidth>=windowHeight){postionX=-(windowHeight+(windowWidth/2-tSize/2));postionY=windowWidth/2+tSize/2-tSize;}
   else{postionX=-(windowHeight/2+tSize/2);postionY=-(windowHeight/2-tSize/2);}
@@ -45,7 +67,7 @@ function draw() {
   createHead(windowWidth/2, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
-  if(Posture==4){
+  if(Posture>=10 && Posture<=12){
     let postionX,postionY;
     if(windowWidth>=windowHeight){postionX=-(windowHeight+(windowWidth/2-tSize/2));postionY=windowWidth/2+tSize/2-tSize;}
     else{postionX=-(windowHeight/2+tSize/2);postionY=-(windowHeight/2-tSize/2);}
@@ -61,7 +83,7 @@ function draw() {
   createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
   pop()
   }
-  if(Posture==5){
+  if(Posture>=13 && Posture<=15){
     Adjust(-windowWidth,-windowHeight,PI)
     createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
     pop()
@@ -72,7 +94,7 @@ function draw() {
     createHead(windowWidth/2-tSize/4, windowHeight/2-tSize/4, 87.37, Emotion, headPatternAcount,tSize);
     pop()
   }
-  if(Posture==6){
+  if(Posture==16){
         Adjust(-windowWidth,-windowHeight,PI)
     createBody(windowWidth/2+tSize/4, bodyPatternAcount,tSize);
     pop()
