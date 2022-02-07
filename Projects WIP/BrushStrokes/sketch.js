@@ -34,7 +34,7 @@ let vDebug;
     //preloading the images of course
 function preload(){
   img = loadImage(fn);
-  brush = loadImage("./Brushes/brush.png");
+  brush = loadImage("./Brushes/brushC.png");
 }
 
 function setup() {
