@@ -10,12 +10,12 @@ let arrTotal;
 let arrCurrent;
 
     // pixel size of the brush width and height usually.
-let brushSize = 20;
+let brushSize = 50;
     // declaring the filename in this way fixes a bug where P5js renames it.
 let baseDir = "BasePhotos";
-let fileName = "Nebula";
-let fileExt = ".jpg";
-let fn = "\\" + baseDir + "\\" + fileName + fileExt;
+let fileName = "Cat";
+let fileExt = ".png";
+let fn = "./" + baseDir + "/" + fileName + fileExt;
     // for the status readout
 let pStatus;
 let pDebug;
@@ -42,11 +42,11 @@ function setup() {
   brush.resize(brushSize,brushSize);
   brush.loadPixels();
     //Setup the control buttons
-  let buttonS = createButton("Save");
+  let buttonS = createButton("保存");
   buttonS.mousePressed(Export);
-  let buttonP = createButton("Pause");
+  let buttonP = createButton("暂停");
   buttonP.mousePressed(butPause);
-  let buttonC = createButton("Continue");
+  let buttonC = createButton("继续");
   buttonC.mousePressed(butContinue);
     //Setup initial message about starting the process.
   pStatus = createP("Processing...");
@@ -72,7 +72,7 @@ function setup() {
 
 function draw() {
   //background(255); // optional background color.
-  pStatus.elt.innerHTML = "Processing " + fileName + " " +
+  pStatus.elt.innerHTML = fileName + " " + "生成中..." +
     Math.round((1 - (arr.length/arrTotal)) * 100) + "% " +
     "(" + (arrTotal - arr.length) + "/" + arrTotal + ")"; // Status readout
   let dNow = new Date();  // get now as a date. (When will then be now? Soon...)
