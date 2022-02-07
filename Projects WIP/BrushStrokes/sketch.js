@@ -10,11 +10,11 @@ let arrTotal;
 let arrCurrent;
 
     // pixel size of the brush width and height usually.
-let brushSize = 20;
+let brushSize = 40;
     // declaring the filename in this way fixes a bug where P5js renames it.
 let baseDir = "BasePhotos";
-let fileName = "Cat";
-let fileExt = ".png";
+let fileName = "Flower";
+let fileExt = ".jpg";
 let fn = "./" + baseDir + "/" + fileName + fileExt;
     // for the status readout
 let pStatus;
@@ -34,7 +34,7 @@ let vDebug;
     //preloading the images of course
 function preload(){
   img = loadImage(fn);
-  brush = loadImage("./Brushes/brushC.png");
+  brush = loadImage("./Brushes/brushG.png");
 }
 
 function setup() {
