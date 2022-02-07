@@ -10,7 +10,7 @@ let arrTotal;
 let arrCurrent;
 
     // pixel size of the brush width and height usually.
-let brushSize = 50;
+let brushSize = 20;
     // declaring the filename in this way fixes a bug where P5js renames it.
 let baseDir = "BasePhotos";
 let fileName = "Cat";
@@ -118,14 +118,14 @@ function Export() {
 // Pause the process
 function butPause() {
   noLoop();
-  if (pStatus.elt.innerHTML == "Script Complete!") {return;} // if the script is complete don't change the message.
+  if (pStatus.elt.innerHTML == "生成完成!") {return;} // if the script is complete don't change the message.
   pStatus.elt.innerHTML = "Paused";
 }
 
 //Continue the process
 function butContinue() {
   loop();
-  if (pStatus.elt.innerHTML == "Script Complete!") {return;}
+  if (pStatus.elt.innerHTML == "生成完成!") {return;}
   pStatus.elt.innerHTML = "Processing...";
 }
 
