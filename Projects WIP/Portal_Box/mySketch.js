@@ -73,29 +73,21 @@ function draw() {
   my += (mouseY - my) * me;
   let rx = PI * map(my, 0, height, -0.5, 0.5);
   let ry = PI * map(mx, 0, width, 0.5, -0.5);
-  
+
   background(30);
-  
+
   rotateX(rx);
   rotateY(ry);
-  
+
   noStroke();
-  
+
   shader(glsl);
-  
+
   push();
   {
     translate(0, 0, -size);
     portal(size, sec);
   }
   pop();
-  
-  push();
-  {
-    translate(0, size, 0);
-    rotateX(PI * 0.5);
-    
-    portal(size, sec);
-  }
-  pop();
+
 }
