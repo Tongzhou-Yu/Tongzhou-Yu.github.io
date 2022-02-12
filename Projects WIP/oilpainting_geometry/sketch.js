@@ -39,8 +39,8 @@ function effectlayer(){
 	  translate(x,y);
 		rotate(radians(angle*random(0.5,1)));
 		if(red(col)>180){
-		rect(0,0,2,2,1);
-	}else if(green(col)>180){
+		rect(0,0,2 ,2,1);
+	}else{
 		rect(0,0,4,4,2);
 	}
 		pop();
@@ -61,7 +61,7 @@ function basicLayer(){
 	img.noStroke();
 	img.noFill();
 	img.ellipse(250/500*myWindowSize, 250/500*myWindowSize, 400/500*myWindowSize, 400/500*myWindowSize);
-	img.stroke(10);
+	img.stroke(10,20,30);
 	img.strokeWeight(15/500*myWindowSize);
 	img.ellipse(250/500*myWindowSize+100*seed, 250/500*myWindowSize+100*seed, 380/500*myWindowSize, 380/500*myWindowSize);
 	img.noStroke();
@@ -82,19 +82,19 @@ function basicLayer(){
 	img.ellipse(230/500*myWindowSize+100*seed, 250/500*myWindowSize+100*seed, 50/500*myWindowSize, 50/500*myWindowSize);
 	img.fill(0, 0, 0);
 	img.ellipse(230/500*myWindowSize, 250/500*myWindowSize, 10/500*myWindowSize, 10/500*myWindowSize);
-img.stroke(2);
+img.stroke(2,2,2);
 img.strokeWeight(2/500*myWindowSize);
 img.line ( 350 /500*myWindowSize+100*seed, 150 /500*myWindowSize, 130/500*myWindowSize , 400/500*myWindowSize );
-img.stroke(2);
+img.stroke(2,2,2);
 img.strokeWeight(2/500*myWindowSize);
 img.line ( 230/500*myWindowSize , 120/500*myWindowSize , 100/500*myWindowSize , 350/500*myWindowSize );
-img.stroke(2);
+img.stroke(2,2,2);
 img.strokeWeight(2/500*myWindowSize);
 img.line ( 100/500*myWindowSize , 150/500*myWindowSize+100*seed , 400/500*myWindowSize , 200/500*myWindowSize );
-img.stroke(2);
+img.stroke(2,2,2);
 img.strokeWeight(2/500*myWindowSize);
 img.line ( 80/500*myWindowSize+100*seed , 250/500*myWindowSize , 400/500*myWindowSize , 350/500*myWindowSize );
-img.stroke(2);
+img.stroke(2,2,2);
 img.strokeWeight(2/500*myWindowSize);
 img.line ( 350 /500*myWindowSize, 180 /500*myWindowSize, 360/500*myWindowSize , 360/500*myWindowSize );
 img.noStroke();
@@ -135,5 +135,5 @@ img.strokeWeight(1.5/500*myWindowSize);
 img.strokeWeight(4/500*myWindowSize);
 	img.fill(238, 78, 38, 180);
 	img.ellipse(130/500*myWindowSize, 240/500*myWindowSize, 30/500*myWindowSize, 30/500*myWindowSize);
-	image(img,0,0);
+	//image(img,0,0);
 }
